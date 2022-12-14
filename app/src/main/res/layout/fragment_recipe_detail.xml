@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="model"
+            type="com.rgdev.android.cookingbuddy.ui.viewmodels.recipe.RecipeDetailViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            tools:context=".ui.fragments.recipe.RecipeDetailFragment">
+
+            <TextView
+                android:id="@+id/tvRecipeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{model.recipe.recipe.title}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/TextAppearance.AppCompat.Large"
+                tools:text="Recipe title" />
+
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_baseline_delete_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvRecipeTitle"
+                app:layout_constraintBottom_toBottomOf="@id/chipType"/>
+
+            <ToggleButton
+                android:id="@+id/btnFavourite"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:textOn=""
+                android:textOff=""
+                android:checked="@{model.recipe.recipe.favourite}"
+                android:background="@drawable/toggle_image"
+                app:layout_constraintEnd_toStartOf="@id/btnDelete"
+                app:layout_constraintTop_toTopOf="@id/tvRecipeTitle"
+                app:layout_constraintBottom_toBottomOf="@id/chipType"/>
+
+            <com.rgdev.android.cookingbuddy.ui.widget.customviews.TypeChip
+                android:id="@+id/chipType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                recipe="@{model.recipe.recipe}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvRecipeTitle"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                app:chipIconVisible="true"
+                app:chipIcon="@drawable/ic_baseline_euro_24"
+                android:text="@{@string/price_format(model.recipe.recipe.price)}"
+                app:layout_constraintTop_toTopOf="@id/chipType"
+                app:layout_constraintBottom_toBottomOf="@id/chipType"
+                app:layout_constraintStart_toEndOf="@id/chipType" />
+
+            <TextView
+                android:id="@+id/tvRecipeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/chipType"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="@{model.recipe.recipe.recipeText}"
+                tools:text="Recipe text"
+                style="@style/TextAppearance.AppCompat.Medium"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvIngredients"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                ingredientItems="@{model.recipe.ingredients}"
+                app:layout_constraintTop_toBottomOf="@id/tvRecipeText"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+
+
+</layout>
+

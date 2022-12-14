@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentRecipes">
+
+    <fragment
+        android:id="@+id/fragmentRecipes"
+        android:name="com.rgdev.android.cookingbuddy.ui.fragments.recipe.RecipesFragment"
+        android:label="Recipes"
+        tools:layout="@layout/fragment_recipes" >
+        <action
+            android:id="@+id/action_fragmentRecipes_to_addRecipeFragment"
+            app:destination="@id/addRecipeFragment" />
+        <action
+            android:id="@+id/action_fragmentRecipes_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRecipeFragment"
+        android:name="com.rgdev.android.cookingbuddy.ui.fragments.recipe.AddRecipeFragment"
+        android:label="Add recipe"
+        tools:layout="@layout/fragment_add_recipe" >
+        <action
+            android:id="@+id/action_addRecipeFragment_to_fragmentRecipes"
+            app:destination="@id/fragmentRecipes" />
+    </fragment>
+    <fragment
+        android:id="@+id/ingredientsFragment"
+        android:name="com.rgdev.android.cookingbuddy.ui.fragments.ingredient.IngredientsFragment"
+        android:label="Ingredients" >
+        <action
+            android:id="@+id/action_ingredientsFragment_to_addIngredientFragment"
+            app:destination="@id/addIngredientFragment" />
+        <action
+            android:id="@+id/action_ingredientsFragment_to_ingredientDetailFragment"
+            app:destination="@id/ingredientDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addIngredientFragment"
+        android:name="com.rgdev.android.cookingbuddy.ui.fragments.ingredient.AddIngredientFragment"
+        android:label="Add ingredient"
+        tools:layout="@layout/fragment_add_ingredient" >
+        <action
+            android:id="@+id/action_addIngredientFragment_to_ingredientsFragment"
+            app:destination="@id/ingredientsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.rgdev.android.cookingbuddy.ui.fragments.AboutFragment"
+        android:label="About"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/recipeDetailFragment"
+        android:name="com.rgdev.android.cookingbuddy.ui.fragments.recipe.RecipeDetailFragment"
+        android:label="Recipe detail"
+        tools:layout="@layout/fragment_recipe_detail" >
+        <argument
+            android:name="id"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_recipeDetailFragment_to_fragmentRecipes"
+            app:destination="@id/fragmentRecipes" />
+    </fragment>
+    <fragment
+        android:id="@+id/ingredientDetailFragment"
+        android:name="com.rgdev.android.cookingbuddy.ui.fragments.ingredient.IngredientDetailFragment"
+        android:label="IngredientDetailFragment" >
+        <action
+            android:id="@+id/action_ingredientDetailFragment_to_ingredientsFragment"
+            app:destination="@id/ingredientsFragment" />
+        <argument
+            android:name="ingredientId"
+            app:argType="long" />
+    </fragment>
+</navigation>
